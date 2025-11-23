@@ -1,0 +1,1 @@
+docker build --build-arg VITE_MODE=development -t nginx-server .

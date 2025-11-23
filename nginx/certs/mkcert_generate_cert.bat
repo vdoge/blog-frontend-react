@@ -1,0 +1,1 @@
+mkcert -validity 365 localhost
