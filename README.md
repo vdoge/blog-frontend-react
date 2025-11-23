@@ -26,7 +26,7 @@ The system aims to illustrate clean code structure, modular domain architecture 
 
 It serves as a practical, realistic alternative to theoretical interview questions, offering a working demonstration of real-world implementation skills.
 
-[See the corresponding backend project here.](https://github.com/vdoge/TheGame)
+[See the corresponding backend project here.](https://github.com/vdoge/blog-backend-nodejs)
 
 ---
 
@@ -34,7 +34,7 @@ It serves as a practical, realistic alternative to theoretical interview questio
 
 ## Additional Documentation🗂️
 
-For documentation like architecture diagram, sequence diagram, API docs, full deployment instructions and roadmap. [See the backend repo.](https://github.com/vdoge/TheGame)
+For documentation like architecture diagram, sequence diagram, API docs, full deployment instructions and roadmap. [See the backend repo.](https://github.com/vdoge/blog-backend-nodejs)
 
 
 ---
@@ -54,8 +54,8 @@ If running locally:
 ## Getting Started🚀
 ###### 1. Clone repo
 ```bash
-git clone https://github.com/vdoge/vdogs-blog-frontend.git
-cd vdogs-blog-frontend
+git clone https://github.com/vdoge/blog-frontend-react.git
+cd blog-frontend-react
 ```
 
 ###### 2. Install dependencies
