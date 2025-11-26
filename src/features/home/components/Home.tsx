@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react'
 
 import { Typography, Container, Card, CardContent, Stack, Box, Link as MuiLink } from '@mui/material';
-import { MuiMarkdown } from 'mui-markdown';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug'
 
 import { getBlogs } from '../api/home.api';
 import Panel from '../../panel/components/Panel';
 import type { BlogType } from '../../blog/types/blog.types';
 import { Link as RouterLink } from 'react-router-dom';
+import CodeBlockWrapper from '../../../shared/components/CodeBlockWrapper';
+
 
 
 function Home() {
@@ -38,7 +43,6 @@ function Home() {
                         // for each blog
                         blogs?.map((blog: BlogType) => {
                             return (
-                                    
                                 <Card key={blog._id} sx={{ minWidth: 0 }}>
                                     <CardContent>
                                         <Stack spacing={1}>
@@ -53,14 +57,22 @@ function Home() {
                                                 { blog.author.name + " - " + new Date(blog.created).toLocaleDateString("en-NZ", { dateStyle: "medium" }) }
                                             </Typography>
 
-                                            <MuiMarkdown overrides={{}}>
-                                                { blog.content.replace(/\n/g, '  \n\n') }
-                                            </MuiMarkdown>
+                                            <Markdown
+                                                rehypePlugins={[rehypeRaw, rehypeSlug]}
+                                                remarkPlugins={[remarkGfm]}
+
+                                                components={{
+                                                    code({ children, className, ...props }) {
+                                                        return <CodeBlockWrapper code={children as string} className={className} {...props} />
+                                                    }
+                                                }}
+                                            >
+                                                { blog.content }
+                                            </Markdown>
 
                                         </Stack>
                                     </CardContent>
                                 </Card>
-
                             )
                         })
                     }

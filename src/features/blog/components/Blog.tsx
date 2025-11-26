@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
 
 import { Typography, Container, Stack } from '@mui/material';
-import { MuiMarkdown } from 'mui-markdown';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug'
 
 import { useParams } from 'react-router-dom';
 import type { BlogType } from '../types/blog.types';
 import { getBlog } from '../api/blog.api';
+import CodeBlockWrapper from '../../../shared/components/CodeBlockWrapper'
+
 
 
 function Blog() {
@@ -36,9 +41,19 @@ function Blog() {
                 { blog?.author.name } - { blog ? new Date(blog.created).toLocaleDateString("en-NZ", { dateStyle: "medium" }) : null }
             </Typography>
 
-            <MuiMarkdown>
-                { blog?.content.replace(/\n/g, '  \n\n') }
-            </MuiMarkdown>
+            <Markdown 
+                rehypePlugins={[rehypeRaw, rehypeSlug]}
+                remarkPlugins={[remarkGfm]}
+
+                components={{
+                    code({ children, className, ...props }) {
+                        return <CodeBlockWrapper code={children as string} className={className} {...props} />
+                    }
+                }}
+            >
+                { blog?.content }
+
+            </Markdown>
 
         </Stack>
 

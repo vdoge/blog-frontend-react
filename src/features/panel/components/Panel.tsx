@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import { Typography, Container, Card, CardContent, TextField, Box, List, ListItem, ListItemText, Divider, Link } from '@mui/material';
-import { MuiMarkdown } from 'mui-markdown';
+import { Card, CardContent, TextField, Box, List, ListItem, ListItemText, Divider, Link } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
 import type { BlogType } from '../../blog/types/blog.types';
